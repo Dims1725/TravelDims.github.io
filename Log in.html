@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+
+    <link rel="stylesheet" href="Log in.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Include SweetAlert library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+
+            // Validasi menggunakan JavaScript
+            if (!isValidEmail(username)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Username',
+                    text: 'Username harus berupa alamat email yang valid!'
+                });
+                return false; // Menghentikan submit form
+            }
+
+            // Simulasi proses login sukses
+            // Di sini Anda bisa menambahkan validasi server atau fungsi login
+            // Sebagai contoh, langsung mengarahkan ke Menu.html setelah SweetAlert
+            Swal.fire({
+                icon: 'success',
+                title: 'Login berhasil!',
+                text: 'Anda berhasil masuk.',
+                showConfirmButton: false,
+                timer: 1500 // Menutup SweetAlert setelah 1.5 detik
+            }).then(function() {
+                window.location.href = "Menu.html"; // Mengarahkan ke halaman Menu.html
+            });
+
+            // Mengembalikan false agar form tidak benar-benar disubmit
+            return false;
+        }
+
+        function isValidEmail(email) {
+            // Regular expression untuk validasi alamat email
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailPattern.test(email);
+        }
+    </script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <form onsubmit="return validateForm()">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="email" id="username" placeholder="Username" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                <i class='bx bxs-user' ></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox">Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <div class="register-link">
+                <p>Don't have an account? <a href="#">Register</a></p>
+            </div>
+        </form>
+
+    </div>
+    
+</body>
+</html>
